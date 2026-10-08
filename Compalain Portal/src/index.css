@@ -1,32 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap");
-@import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
-@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
 :root {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  --font-sans: "Poppins", sans-serif;
+  font-family: var(--font-sans);
   color: #173d33;
   background: #fff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   min-width: 320px;
   background: #fff;
+  font-family: var(--font-sans);
 }
+
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
+
 img {
   display: block;
 }
+
 ::selection {
   background: #e9bd49;
   color: #075342;
