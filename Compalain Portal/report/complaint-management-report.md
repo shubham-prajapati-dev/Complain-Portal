@@ -1,34 +1,62 @@
 # Complaint Management Page
 
-This report documents the new Complaint Management page added to the website.
+## Real complaint submission
 
-## Source flowchart
+The complaint page now submits to `POST /api/complaints`. The API validates the request, generates a unique complaint ID and stores the complaint in Supabase.
+
+### Required environment variables
+
+Configure these server-side in the deployment environment:
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+Never expose `SUPABASE_SERVICE_ROLE_KEY` in React, Vite client code or browser-exposed variables.
+
+## Database setup
+
+Run `supabase/schema.sql` in the Supabase SQL editor. Row Level Security is enabled and no public table policies are created because database access is performed by the server-side API.
+
+## API
+
+### Submit
+
+`POST /api/complaints`
+
+Request:
+
+```json
+{
+  "category": "College Complaint",
+  "level": "HOD Level Complaint",
+  "subject": "Sample subject",
+  "description": "Sample complaint description",
+  "contact": "Student roll number"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "complaint": {
+    "complaintId": "CMP-YYYYMMDD-XXXXXXXX",
+    "status": "Submitted"
+  }
+}
+```
+
+### Track
+
+`GET /api/complaints?id=CMP-YYYYMMDD-XXXXXXXX`
+
+The endpoint returns the complaint category, level, subject, status and timestamps.
+
+## Frontend behavior
+
+After successful submission the page displays the generated complaint ID and current status. Failed requests display an error message without losing the selected complaint category/level.
+
+## Flowchart
 
 ![Complaint Management Flowchart](./complaint-management-flowchart.svg)
-
-## Website flow
-
-1. Complaint Management is the entry point.
-2. A user chooses one of three categories:
-   - College Complaint
-   - Hostel Complaint
-   - Campus Complaint
-3. Each category exposes:
-   - College Level Complaint
-   - HOD Level Complaint
-   - Administrator Level Complaint
-4. Selecting a level opens a complaint submission interface.
-5. The final workflow is represented by **Report and Resolve**.
-
-## Implementation
-
-- Separate page: `/complaints.html`
-- React entry: `src/complaints.jsx`
-- Page component: `src/pages/ComplaintManagement/ComplaintManagement.jsx`
-- Page styling: `src/pages/ComplaintManagement/ComplaintManagement.css`
-- The page is responsive for desktop, tablet and mobile.
-- Supporting documentation and the flowchart asset are stored in this `report/` folder.
-
-## Backend note
-
-The submission form is currently a frontend demo. Connect it to the project's backend/API when complaint persistence, authentication, status tracking and administrator workflows are available.
