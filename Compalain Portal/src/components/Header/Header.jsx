@@ -26,7 +26,7 @@ export default function Header() {
 
       <div className="nav-wrap">
         <a className="brand" href="#home">
-          <div className="brand-mark"><img src="https://allenhouse.ac.in/favicon.ico" alt="Allenhouse logo" /></div>
+          <div className="brand-mark"><img src="/src/assets/allenhouse.png" alt="Allenhouse logo" /></div>
           <div>
             <strong>ALLENHOUSE</strong>
             <small>GROUP OF INSTITUTIONS</small>

@@ -3,7 +3,7 @@ import "./Hero.css";
 
 const slides = [
   {
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=85",
+    image: "/src/assets/img.jpg",
     title: "Educate. Enrich.",
     accent: "Empower.",
   },
