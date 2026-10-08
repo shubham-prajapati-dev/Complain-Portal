@@ -1,4 +1,65 @@
 import { useState } from 'react'
 import './Header.css'
-const navItems=['HOME','ABOUT US','ACADEMICS','FACILITIES','ADMISSIONS','GALLERY','CONTACT US']
-export default function Header(){const[open,setOpen]=useState(false);return <header className="site-header"><div className="utility-bar"><div className="utility-left"><span>☎ +91 754400064</span><span>✉ info@tridentpublicschool.com</span><span>⌖ Beldari, Simri Bakhtiyarpur, Patna</span></div><div className="utility-right"><span>Career</span><span>Alumni</span><span>News & Events</span><span>Parent Login</span><a href="#admissions">ADMISSION OPEN</a></div></div><div className="nav-wrap"><a className="brand" href="#home"><div className="brand-mark">T</div><div><strong>TRIDENT</strong><small>PUBLIC SCHOOL</small></div></a><button className="menu-toggle" onClick={()=>setOpen(!open)}>{open?'×':'☰'}</button><nav className={open?'main-nav open':'main-nav'}>{navItems.map(item=><a key={item} className={item==='HOME'?'active':''} href={`#${item.toLowerCase().replaceAll(' ','-')}`} onClick={()=>setOpen(false)}>{item}{['ACADEMICS','FACILITIES','ADMISSIONS'].includes(item)&&<span>⌄</span>}</a>)}<button className="search-btn">⌕</button></nav></div></header>}
+
+const navItems = ['HOME', 'ABOUT US', 'ACADEMICS', 'FACILITIES', 'ADMISSIONS', 'GALLERY', 'CONTACT US']
+
+export default function Header() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <header className="site-header">
+      <div className="utility-bar">
+        <div className="utility-left">
+          <span>☎ +91 754400064</span>
+          <span>✉ info@tridentpublicschool.com</span>
+          <span>⌖ Beldari, Simri Bakhtiyarpur, Patna</span>
+        </div>
+        <div className="utility-right">
+          <span>Career</span>
+          <span>Alumni</span>
+          <span>News & Events</span>
+          <span>Parent Login</span>
+          <a href="#admissions">ADMISSION OPEN</a>
+          <a className="complaint-link" href="/complaints.html">COMPLAINT PORTAL</a>
+        </div>
+      </div>
+
+      <div className="nav-wrap">
+        <a className="brand" href="#home">
+          <div className="brand-mark">T</div>
+          <div>
+            <strong>TRIDENT</strong>
+            <small>PUBLIC SCHOOL</small>
+          </div>
+        </a>
+
+        <button
+          className="menu-toggle"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation"
+          aria-expanded={open}
+        >
+          {open ? '×' : '☰'}
+        </button>
+
+        <nav className={open ? 'main-nav open' : 'main-nav'} aria-label="Main navigation">
+          {navItems.map((item) => (
+            <a
+              key={item}
+              className={item === 'HOME' ? 'active' : ''}
+              href={`#${item.toLowerCase().replaceAll(' ', '-')}`}
+              onClick={() => setOpen(false)}
+            >
+              {item}
+              {['ACADEMICS', 'FACILITIES', 'ADMISSIONS'].includes(item) && <span>⌄</span>}
+            </a>
+          ))}
+          <a className="mobile-complaint-link" href="/complaints.html" onClick={() => setOpen(false)}>
+            COMPLAINT PORTAL
+          </a>
+          <button className="search-btn" aria-label="Search">⌕</button>
+        </nav>
+      </div>
+    </header>
+  )
+}
