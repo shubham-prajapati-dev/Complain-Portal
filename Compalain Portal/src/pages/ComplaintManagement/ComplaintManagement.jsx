@@ -32,6 +32,63 @@ const levels = [
 
 export default function ComplaintManagement() {
   const [selected, setSelected] = useState(null)
+  const [form, setForm] = useState({ subject: '', description: '', contact: '' })
+  const [submitting, setSubmitting] = useState(false)
+  const [result, setResult] = useState(null)
+
+  const openComplaint = (category, level) => {
+    setSelected({ category, level })
+    setForm({ subject: '', description: '', contact: '' })
+    setResult(null)
+  }
+
+  const closeComplaint = () => {
+    if (submitting) return
+    setSelected(null)
+    setResult(null)
+  }
+
+  const updateField = (event) => {
+    const { name, value } = event.target
+    setForm((current) => ({ ...current, [name]: value }))
+  }
+
+  const submitComplaint = async (event) => {
+    event.preventDefault()
+    if (!selected || submitting) return
+
+    setSubmitting(true)
+    setResult(null)
+
+    try {
+      const response = await fetch('/api/complaints', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          category: selected.category.title,
+          level: selected.level.title,
+          ...form,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Unable to submit the complaint.')
+      }
+
+      setResult({
+        type: 'success',
+        complaintId: data.complaint.complaintId,
+        status: data.complaint.status,
+      })
+      setForm({ subject: '', description: '', contact: '' })
+    } catch (error) {
+      setResult({ type: 'error', message: error.message })
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <div className="complaint-page">
@@ -78,7 +135,7 @@ export default function ComplaintManagement() {
                     <button
                       className="level-card"
                       key={level.title}
-                      onClick={() => setSelected({ category, level })}
+                      onClick={() => openComplaint(category, level)}
                     >
                       <span className="level-icon">{level.icon}</span>
                       <strong>{level.title}</strong>
@@ -118,26 +175,76 @@ export default function ComplaintManagement() {
       {selected && (
         <div className="complaint-modal" role="dialog" aria-modal="true" aria-label="Complaint submission">
           <div className="modal-card">
-            <button className="modal-close" onClick={() => setSelected(null)} aria-label="Close">×</button>
+            <button className="modal-close" onClick={closeComplaint} aria-label="Close">×</button>
             <span className="section-label">NEW COMPLAINT</span>
             <h2>{selected.category.title}</h2>
             <p className="modal-subtitle">{selected.level.title}</p>
-            <form onSubmit={(event) => event.preventDefault()}>
-              <label>
-                Subject
-                <input type="text" placeholder="Briefly describe the issue" />
-              </label>
-              <label>
-                Description
-                <textarea rows="5" placeholder="Explain the complaint in detail..." />
-              </label>
-              <label>
-                Contact / Roll Number
-                <input type="text" placeholder="Enter your details" />
-              </label>
-              <button className="submit-complaint" type="submit">SUBMIT COMPLAINT →</button>
-            </form>
-            <p className="demo-note">Demo interface — connect this form to your backend/API for real submissions.</p>
+
+            {result?.type === 'success' ? (
+              <div className="submission-success">
+                <div className="success-icon">✓</div>
+                <h3>Complaint submitted successfully</h3>
+                <p>Your complaint has been recorded and is now available for review.</p>
+                <div className="complaint-reference">
+                  <span>Complaint ID</span>
+                  <strong>{result.complaintId}</strong>
+                </div>
+                <div className="complaint-reference">
+                  <span>Status</span>
+                  <strong>{result.status}</strong>
+                </div>
+                <button className="submit-complaint" type="button" onClick={closeComplaint}>DONE</button>
+              </div>
+            ) : (
+              <form onSubmit={submitComplaint}>
+                <label>
+                  Subject
+                  <input
+                    name="subject"
+                    value={form.subject}
+                    onChange={updateField}
+                    maxLength="180"
+                    required
+                    type="text"
+                    placeholder="Briefly describe the issue"
+                  />
+                </label>
+                <label>
+                  Description
+                  <textarea
+                    name="description"
+                    value={form.description}
+                    onChange={updateField}
+                    maxLength="5000"
+                    required
+                    rows="5"
+                    placeholder="Explain the complaint in detail..."
+                  />
+                </label>
+                <label>
+                  Contact / Roll Number
+                  <input
+                    name="contact"
+                    value={form.contact}
+                    onChange={updateField}
+                    maxLength="120"
+                    required
+                    type="text"
+                    placeholder="Enter your details"
+                  />
+                </label>
+
+                {result?.type === 'error' && <p className="form-error" role="alert">{result.message}</p>}
+
+                <button className="submit-complaint" type="submit" disabled={submitting}>
+                  {submitting ? 'SUBMITTING…' : 'SUBMIT COMPLAINT →'}
+                </button>
+              </form>
+            )}
+
+            {!result?.type && (
+              <p className="secure-note">Your complaint is sent securely to the website API and stored in the complaint database.</p>
+            )}
           </div>
         </div>
       )}
