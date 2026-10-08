@@ -1,0 +1,3 @@
+import './Highlights.css'
+const items=[['▣','Smart Classrooms','Technology-enabled learning for all'],['♧','Experienced Faculty','Qualified mentors who inspire'],['▤','Safe Transport','GPS-enabled buses for secure travel'],['♧','Holistic Development','Mind • Body • Values balanced growth'],['⌁','Modern Labs','Well-equipped labs for practical learning']]
+export default function Highlights(){return <section className="highlights">{items.map(([icon,title,text])=><div className="highlight" key={title}><b>{icon}</b><div><strong>{title}</strong><span>{text}</span></div></div>)}</section>}
