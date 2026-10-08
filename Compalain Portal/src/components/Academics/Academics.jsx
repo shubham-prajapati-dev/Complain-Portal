@@ -1,0 +1,3 @@
+import './Academics.css'
+const cards=[['▤','CBSE Curriculum','Comprehensive curriculum from Nursery to Class XII designed for holistic growth.'],['♟','Experienced Faculty','Our educators inspire, mentor and bring out the best in every child.'],['☼','Innovative Learning','Activity-based, experiential and technology-integrated learning approach.'],['♜','Excellence Driven','Focus on academics, sports, arts and life skills for all-round development.']]
+export default function Academics(){return <section id="academics" className="section academics"><p className="eyebrow">ACADEMICS</p><h2>Explore. Learn. Excel.</h2><div className="academic-grid">{cards.map(([icon,title,text])=><article key={title}><b>{icon}</b><h3>{title}</h3><p>{text}</p></article>)}</div></section>}

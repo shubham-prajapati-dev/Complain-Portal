@@ -1,0 +1,2 @@
+import './AdmissionBanner.css'
+export default function AdmissionBanner(){return <section id="admissions" className="admission-banner"><div className="cap">⌂</div><div><strong>Admissions Open for<br/>Academic Year 2025–26</strong></div><div className="divider"/><p>Give your child the best start<br/>for a bright tomorrow.</p><a href="#contact-us">ENQUIRE NOW <span>→</span></a></section>}
