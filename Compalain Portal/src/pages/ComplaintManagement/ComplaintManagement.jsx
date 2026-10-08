@@ -94,10 +94,10 @@ export default function ComplaintManagement() {
     <div className="complaint-page">
       <header className="complaint-header">
         <a className="complaint-brand" href="/">
-          <span className="complaint-brand-mark">T</span>
+          <span className="complaint-brand-mark"><img src="https://allenhouse.ac.in/favicon.ico" alt="Allenhouse logo" /></span>
           <span>
-            <strong>TRIDENT</strong>
-            <small>PUBLIC SCHOOL</small>
+            <strong>ALLENHOUSE</strong>
+            <small>GROUP OF INSTITUTIONS</small>
           </span>
         </a>
         <a className="back-home" href="/">← Back to Website</a>
