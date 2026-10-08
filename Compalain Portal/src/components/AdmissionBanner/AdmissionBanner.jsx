@@ -1,2 +1,23 @@
-import './AdmissionBanner.css'
-export default function AdmissionBanner(){return <section id="admissions" className="admission-banner"><div className="cap">⌂</div><div><strong>Admissions Open<br/>Academic Year 2026</strong></div><div className="divider"/><p>Explore B.Tech, MBA, MCA, BBA and BCA programs with an industry-focused learning environment.</p><a href="https://allenhouse.ac.in/admission-process/">APPLY / ENQUIRE <span>→</span></a></section>}
+import "./AdmissionBanner.css";
+export default function AdmissionBanner() {
+  return (
+    <section id="admissions" className="admission-banner">
+      <div className="cap">⌂</div>
+      <div>
+        <strong>
+          Admissions Open
+          <br />
+          Academic Year 2026
+        </strong>
+      </div>
+      <div className="divider" />
+      <p>
+        Explore B.Tech, MBA, MCA, BBA and BCA programs with an industry-focused
+        learning environment.
+      </p>
+      <a href="https://allenhouse.ac.in/admission-process/">
+        APPLY / ENQUIRE <span>→</span>
+      </a>
+    </section>
+  );
+}
