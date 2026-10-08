@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .section {
   scroll-margin-top: 90px;
 }
@@ -14,8 +14,7 @@ main {
 html {
   scroll-behavior: smooth;
 }
-=======
-.section{width:min(1180px,90%);margin:0 auto;scroll-margin-top:90px}
+.section{width:min(1200px,90%);margin:0 auto;scroll-margin-top:90px}
 main{background:#fff;overflow:hidden}
 .about,.academics,.facilities,.gallery{scroll-margin-top:90px}
 .section,.highlights,.admission-banner{animation:sectionReveal .75s ease both}
@@ -27,4 +26,4 @@ main{background:#fff;overflow:hidden}
 @keyframes sectionReveal{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes cardReveal{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.section,.highlights,.admission-banner,.academic-grid article,.facility-grid article{animation:none!important;transition:none!important}}
->>>>>>> 08a166ad9d072b2a900ff737de67f9c3916f9746
+

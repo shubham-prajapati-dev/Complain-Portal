@@ -1,7 +1,12 @@
-
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap");
+@import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 :root {
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: #173d33;
   background: #fff;
   font-synthesis: none;
@@ -26,14 +31,3 @@ img {
   background: #e9bd49;
   color: #075342;
 }
-=======
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
-:root{font-family:'DM Sans',Arial,sans-serif;color:#173d33;background:#fff;font-synthesis:none;text-rendering:optimizeLegibility}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;min-width:320px;background:#fff;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-button,input{font:inherit}
-img{display:block;max-width:100%}
-a{transition:color .25s ease,background-color .25s ease,border-color .25s ease,transform .25s ease}
-::selection{background:#e9bd49;color:#075342}
-
